@@ -1,0 +1,63 @@
+name: Deployment Project
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}
+      - name: Install NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run Lint
+        run: npm run lint
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    outputs:
+      script-files: ${{ steps.publish.outputs.script-files }}
+    steps:
+      - name: Get Code
+        uses: actions/checkout@v3
+      - name: Cache Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: deps-node-modules-${{ hashFiles('**/package-lock.json') }}    
+      - name: Install Dependencies
+        run: npm ci
+      - name: Build Project
+        run: npm run build
+      - name: Publish JS Filename
+        id: publish
+        run: find dist/assets/*.js -type f -execdir echo 'script-files={}' >> $GITHUB_OUTPUT ';'
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist-files
+          path: dist
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist-files
+      - name: Output Contents
+        run: ls
+      - name: Output Filename
+        run: echo ${{ needs.build.outputs.script-files }}
+      - name: Deploy to Server
+        run: echo "Deploying to Server"
