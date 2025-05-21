@@ -114,3 +114,25 @@ docker run -dp 3000:3000 investment-calculator-app:v1.0.0
 ```
 
 This will map port 3000 from the container to port 3000 on your host machine, allowing you to access the application at `http://localhost:3000`.
+
+### GitHub Container Registry
+
+The Docker image is also available in GitHub Container Registry. You can pull it with:
+
+```bash
+docker pull ghcr.io/cbuelvasc/investment-calculator-app:latest
+```
+
+Or use a specific version by SHA:
+
+```bash
+docker pull ghcr.io/cbuelvasc/investment-calculator-app:ab97ef11e77274b8596ceab6f8b4d3ce817dd444
+```
+
+To run the application using the image from GitHub Container Registry:
+
+```bash
+docker run -dp 3000:3000 ghcr.io/cbuelvasc/investment-calculator-app:latest
+```
+
+The Docker image is automatically built and published to GitHub Container Registry through GitHub Actions whenever changes are pushed to the master branch.
