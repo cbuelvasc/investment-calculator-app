@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Implementación de GitFlow con Git Emoji para gestión de ramas y commits
+- Configuración de versionado semántico automático con semantic-release
+- Integración de semantic-release en el flujo de trabajo de GitHub Actions
+- Documentación detallada sobre el flujo de trabajo de desarrollo en README.md
+
+### Changed
+- Actualizado package.json con nuevas dependencias y scripts para commit y release
+- Mejorado .gitignore con reglas para archivos de semantic-release y GitFlow
+
 ## [1.0.0] - 2025-05-21
 
 ### Changed
