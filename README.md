@@ -23,19 +23,31 @@ With this data, the application calculates and displays a table showing the inve
 ## Project structure
 
 ```
+.github/               # GitHub configuration
+  └── workflows/       # GitHub Actions workflows
+      └── deployment.yml  # CI/CD pipeline for linting, building, deploying and Docker image publishing
+
+public/                # Public static assets
+
 src/
-├── assets/         # Static resources
-├── components/     # React components
+├── assets/            # Static resources
+├── components/        # React components
 │   ├── Header.jsx     # Application header
 │   ├── UserInput.jsx  # Component for capturing user data
 │   ├── Results.jsx    # Component for displaying results
 │   ├── TableHead.jsx  # Results table header
 │   └── TableRow.jsx   # Results table rows
-├── util/           # Utilities and helper functions
+├── util/              # Utilities and helper functions
 │   └── investment.js  # Investment calculation logic
-├── App.jsx         # Main component
-├── index.css       # Global styles
-└── main.jsx        # Entry point
+├── App.jsx            # Main component
+├── index.css          # Global styles
+└── main.jsx           # Entry point
+
+Dockerfile             # Docker container configuration
+eslint.config.js       # ESLint configuration
+index.html             # Main HTML template
+package.json           # Project dependencies and scripts
+vite.config.js         # Vite configuration
 ```
 
 ## Features
