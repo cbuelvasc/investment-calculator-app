@@ -1,0 +1,48 @@
+{
+  "branches": ["main", "master", {"name": "develop", "prerelease": "beta"}],
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer", 
+      {
+        "preset": "emoji",
+        "releaseRules": [
+          {"type": "✨", "release": "minor"},
+          {"type": "🎨", "release": "patch"},
+          {"type": "🐛", "release": "patch"},
+          {"type": "📝", "release": "patch"},
+          {"type": "➕", "release": "patch"},
+          {"type": "🔥", "release": "patch"},
+          {"type": "♻️", "release": "patch"},
+          {"type": "🚀", "release": "minor"},
+          {"type": "💄", "release": "patch"},
+          {"type": "⚡️", "release": "patch"},
+          {"type": "🔒", "release": "patch"},
+          {"type": "🚑", "release": "patch"},
+          {"type": "💥", "release": "major"}
+        ]
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator", 
+      {
+        "preset": "emoji"
+      }
+    ],
+    [
+      "@semantic-release/changelog", 
+      {
+        "changelogFile": "CHANGELOG.md",
+        "changelogTitle": "# Changelog\n\nAll notable changes to this project will be documented in this file."
+      }
+    ],
+    "@semantic-release/npm",
+    [
+      "@semantic-release/git", 
+      {
+        "assets": ["package.json", "CHANGELOG.md"],
+        "message": ":bookmark: Release ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+      }
+    ],
+    "@semantic-release/github"
+  ]
+} 
