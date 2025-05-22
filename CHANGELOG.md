@@ -1,3 +1,13 @@
+# 1.0.0 (2025-05-22)
+
+
+* :pencil: (Update CHANGELOG.md to reflect recent enhancements in GitFlow and semantic-release integration) - Modified package.json to include new dependencies and scr… ([ab6a65e](https://github.com/cbuelvasc/investment-calculator-app/commit/ab6a65ed9ae1f223e445a9cd954fe969687b2dda))
+
+
+### BREAKING CHANGES
+
+* - Modified package.json to include new dependencies and scripts.
+
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -42,4 +52,3 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - React components for user input and results display
 - Initial project structure for Investment Calculator app (99f5449)
 - CHANGELOG.md file to track all changes to the project
-
