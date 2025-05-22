@@ -155,6 +155,8 @@ The Docker image is automatically built and published to GitHub Container Regist
 
 This project follows GitFlow branching model with emoji-based commits and automated semantic versioning.
 
+For a detailed step-by-step guide on our workflow process, including when to create releases after new features or bugfixes, please refer to [GitFlow Workflow Guide](docs/gitflow-workflow-guide.md).
+
 #### Setup Instructions
 
 1. Install required tools:
