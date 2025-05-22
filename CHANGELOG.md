@@ -17,6 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Actualizado package.json con nuevas dependencias y scripts para commit y release
 - Mejorado .gitignore con reglas para archivos de semantic-release y GitFlow
 
+### CI/CD
+- Optimizado flujo de trabajo de CI/CD en GitHub Actions:
+  - Reordenado job de Semantic Release para ejecutarse antes del despliegue Docker
+  - Añadida configuración para etiquetar imágenes Docker con la nueva versión semántica
+  - Mejorada la captura y uso de la versión generada entre jobs del workflow
+
 ## [1.0.0] - 2025-05-21
 
 ### Changed
