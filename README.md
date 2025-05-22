@@ -148,3 +148,124 @@ docker run -dp 3000:3000 ghcr.io/cbuelvasc/investment-calculator-app:latest
 ```
 
 The Docker image is automatically built and published to GitHub Container Registry through GitHub Actions whenever changes are pushed to the master branch.
+
+## Development Workflow
+
+### GitFlow with Git Emoji and Semantic Versioning
+
+This project follows GitFlow branching model with emoji-based commits and automated semantic versioning.
+
+#### Setup Instructions
+
+1. Install required tools:
+
+```bash
+# Install GitFlow extension
+npm install -g gitflow
+
+# Install Commitizen for conventional commits
+npm install -g commitizen
+
+# Install git-cz with emoji support
+npm install -g git-cz
+
+# Install semantic-release for automated versioning
+npm install -g semantic-release
+```
+
+2. Add the following to your project's `package.json`:
+
+```json
+{
+  "scripts": {
+    "commit": "git-cz",
+    "release": "semantic-release"
+  },
+  "config": {
+    "commitizen": {
+      "path": "git-cz"
+    }
+  },
+  "release": {
+    "branches": ["master"],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/git",
+      "@semantic-release/github"
+    ]
+  }
+}
+```
+
+3. Initialize GitFlow in your repository:
+
+```bash
+git flow init
+```
+
+Use the following settings:
+- Production branch: `master`
+- Development branch: `develop`
+- Feature prefix: `feature/`
+- Release prefix: `release/`
+- Hotfix prefix: `hotfix/`
+- Support prefix: `support/`
+
+#### Workflow Usage
+
+1. **Starting a new feature**:
+```bash
+git flow feature start feature-name
+# Work on your changes
+npm run commit  # Use emoji-based commit
+git flow feature finish feature-name
+```
+
+2. **Creating a release**:
+```bash
+git flow release start X.Y.Z
+# Final adjustments if needed
+npm run commit  # Use emoji-based commit
+git flow release finish X.Y.Z
+```
+
+3. **Automatic version bumping**:
+Semantic-release will analyze your commits and automatically determine the next version number based on the commit types:
+
+- `✨ feat:` - Minor version bump (new feature)
+- `🐛 fix:` - Patch version bump (bug fix)
+- `💥 BREAKING CHANGE:` - Major version bump
+
+4. **Publishing a release**:
+```bash
+npm run release
+```
+
+This will:
+- Analyze commit messages since the last release
+- Determine the next version number
+- Generate/update CHANGELOG.md
+- Create a new Git tag
+- Push changes to GitHub
+- Create a GitHub release
+
+#### Commit Types and Emojis
+
+| Commit Type | Emoji | Description | Version Bump |
+|-------------|-------|-------------|--------------|
+| feat        | ✨    | New feature | Minor        |
+| fix         | 🐛    | Bug fix     | Patch        |
+| docs        | 📝    | Documentation | None       |
+| style       | 💄    | Formatting  | None         |
+| refactor    | ♻️    | Code refactoring | None    |
+| perf        | ⚡️    | Performance | Patch        |
+| test        | ✅    | Tests       | None         |
+| build       | 👷    | Build system | None        |
+| ci          | 💚    | CI build    | None         |
+| chore       | 🔧    | Chores/maintenance | None  |
+| revert      | ⏪    | Revert changes | Varies    |
+
+Use the `BREAKING CHANGE:` prefix in the commit body to trigger a major version bump.
