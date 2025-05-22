@@ -32,6 +32,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Reordenado job de Semantic Release para ejecutarse antes del despliegue Docker
   - Añadida configuración para etiquetar imágenes Docker con la nueva versión semántica
   - Mejorada la captura y uso de la versión generada entre jobs del workflow
+- Implementada actualización automática del CHANGELOG:
+  - Agregado archivo .releaserc.json para configurar semantic-release
+  - Configurada integración entre Git Emoji y generación de notas de versión
+  - Habilitada generación automática de entradas en CHANGELOG basadas en mensajes de commit
 
 ## [1.0.0] - 2025-05-21
 
